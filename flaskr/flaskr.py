@@ -7,6 +7,8 @@ from keys import apiKeys
 
 app = Flask(__name__)
 
+context = {}
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -14,7 +16,7 @@ def home():
 @app.route('/askWatson', methods=['POST', 'GET'])
 def askWatson():
 	user_input = request.args.get('jsdata')
-
+	global context
 	conversation = ConversationV1(
 	username= apiKeys["username"],
 	password= apiKeys["password"],
@@ -40,6 +42,7 @@ def askWatson():
 	
 	# Update the stored context with the latest received from the dialog.
 	context = response['context']
+	print(str(context))
 	print('Detected entities: ' + str(response['entities']))
 	#print 'Intents: ' + str(response['intents'])
 	#print response
