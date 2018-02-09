@@ -4,8 +4,9 @@ Open data portal access web application for GEOG483 project
 # To run server
 Ensure you have flask and watson-developer-cloud libararies by installing them via `pip install flask` and `pip install watson-developer-cloud`
 
-After, navigate to your local version of this repository via command line (`cd \path\to\folder\flaskr`). To initiate Flask server: 
-  `pip install --editable .`
+After, navigate to your local version of this repository via command line (`cd \path\to\folder\flaskr`). To initiate Flask server:  
+
+  `pip install --editable .`  
   `export FLASK_APP=flaskr` (use `set` instead of `export` on Windows)  
   `export FLASK_DEBUG=true` (use `set` instead of `export` on Windows)  
   `flask run`  
