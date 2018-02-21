@@ -1,5 +1,6 @@
 
 <header>
+	<title>GEOG 483</title>
 	<!-- jquery for enter key press -->      
 <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous"></script>
 <style type="text/css">
@@ -52,6 +53,15 @@ input {
 <div id="place_for_results"></div>
 
 <script >
+
+function manageActions() {
+  var action = document.getElementById('action').className
+  if (action == 'download') {    
+    window.location.href = document.getElementById('action').innerHTML
+  }  
+}
+
+
 $("#search_form_input").keypress(function(e){
     if(e.which == 13){
     var text = $(this).val();
@@ -62,6 +72,7 @@ $("#search_form_input").keypress(function(e){
       data: {jsdata: text},
       success: function(response) {
         $("#place_for_results").html(response);
+        manageActions()
       },
       error: function(xhr) {
         //Do Something to handle error
