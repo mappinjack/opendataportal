@@ -1,0 +1,1 @@
+from .opendatabot import app
