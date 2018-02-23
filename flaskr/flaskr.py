@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, redirect
 from watson_developer_cloud import ConversationV1
 from keys import apiKeys
 from dataDict import dataDict
-#import apiKeys
+import requests
 
 app = Flask(__name__)
 
@@ -48,11 +48,32 @@ def askWatson():
 	outputText = output['text'][0] if output['text'] else "No text returned"
 	action = output['action'] if 'action' in output else None
 
+	# Set up downloads HTML to allow JS to handle this in-browser
 	if action == 'download':
 		dataset = output['dataset']
 		dlFormat = output['format']
 		moreInfo = dataDict[dataset]['downloadUrls'][dlFormat]
 
+	# Call ArcGIS REST endpoint to retrieve metadata
+	# TODO - make sure all formats are available for all datatypes
+	elif action == 'metadata':
+		dataset = output['dataset']
+		metaUrl = dataDict[dataset]['metaUrl']
+		r = requests.get(metaUrl)
+		metadata = r.json()
+		description = metadata['description']
+		wkid = metadata['spatialReference']['wkid']
+		return render_template('metadata.html', outputText = outputText, description = description, wkid = wkid)
+
+	# Return datasets
+	elif action == 'listDatasets':
+		datasetList = ''
+		for key in dataDict:
+			datasetList += key +', '
+		outputText += ' ' + datasetList.strip(', ')
+
+
 	# This will return the response.html template with variables
+	# Action iand moreInfo are in a hidden <p> element to allow for JavaScript processing
 	return render_template('response.html', outputText = outputText, action = action, moreInfo = moreInfo)
 
