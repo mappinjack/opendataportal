@@ -6,6 +6,7 @@ from keys import apiKeys
 from dataDict import dataDict
 import requests
 
+
 app = Flask(__name__)
 
 context = {}
@@ -64,6 +65,12 @@ def askWatson():
 		description = metadata['description']
 		wkid = metadata['spatialReference']['wkid']
 		return render_template('metadata.html', outputText = outputText, description = description, wkid = wkid)
+
+	elif action == 'showOnMap':
+		dataset = output['dataset']
+		endpoint = dataDict[dataset]['endpoint']
+		popupFields = dataDict[dataset]['popupFields']
+		return render_template('showOnMap.html', endpoint = endpoint, popupFields = popupFields)
 
 	# Return datasets
 	elif action == 'listDatasets':

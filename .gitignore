@@ -5,3 +5,5 @@ opendatabot.egg-info/SOURCES.txt
 opendatabot.egg-info/requires.txt
 opendatabot.egg-info/PKG-INFO
 opendatabot/__pycache__/opendatabot.cpython-36.pyc
+opendatabot/opendatabot.pyc
+*.pyc

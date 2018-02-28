@@ -26,6 +26,17 @@ dataDict = {
 						  "kml" : "https://opendata.arcgis.com/datasets/09663cae662d4bba8b4fd4be11b6a69e_0.kml",
 						  "shp" : "https://opendata.arcgis.com/datasets/09663cae662d4bba8b4fd4be11b6a69e_0.zip",
 						  "gdb" : "https://www.arcgis.com/sharing/rest/content/items/76548391d1ca4c4b9d99bf692e995471/data"},
-		"metaUrl" : "https://services.arcgis.com/ZpeBVw5o1kjit7LT/ArcGIS/rest/services/Trails/FeatureServer?f=pjson"}
+		"metaUrl" : "https://services.arcgis.com/ZpeBVw5o1kjit7LT/ArcGIS/rest/services/Trails/FeatureServer?f=pjson",
+		"popupFields":["PATH_TYPE"]},
+	"recreation points": {
+		"endpoint": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/RecreationPoints/FeatureServer/0/",
+		"downloadUrls" : {"csv" : "TODO"},
+		"metaUrl" : "TODO",
+	    "popupFields":["NAME","TYPE","ADDRESS"]},
+	"creeks": {
+		"endpoint": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/WaterFeatures_Creeks/FeatureServer/0/",
+		"downloadUrls" : {"csv" : "TODO"},
+		"metaUrl" : "TODO",
+	    "popupFields":["NAME"]}
 	}
 
