@@ -5,6 +5,7 @@ from watson_developer_cloud import ConversationV1
 from keys import apiKeys
 from dataDict import dataDict
 import requests
+import json
 
 
 app = Flask(__name__)
@@ -69,7 +70,7 @@ def askWatson():
 	elif action == 'showOnMap':
 		dataset = output['dataset']
 		endpoint = dataDict[dataset]['endpoint']
-		popupFields = dataDict[dataset]['popupFields']
+		popupFields = json.dumps(dataDict[dataset]['popupFields'])
 		return render_template('showOnMap.html', endpoint = endpoint, popupFields = popupFields)
 
 	# Return datasets

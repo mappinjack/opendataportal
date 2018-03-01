@@ -32,7 +32,7 @@
     //featurelayer.addTo(markers);
 
     var popup = featurelayer.bindPopup(function(layer){
-    	field1 = '{{popupFields}}'[0]
+    	field1 = {{popupFields|safe}}[0]
     	    	return L.Util.template('<p>{' + field1 + '}</p>' ,layer.feature.properties)});
 
     popup.addTo(mymap);
