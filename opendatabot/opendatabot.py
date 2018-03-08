@@ -6,6 +6,7 @@ from keys import apiKeys
 from dataDict import dataDict
 import requests
 import json
+import requests
 
 
 app = Flask(__name__)
@@ -80,7 +81,13 @@ def askWatson():
 			datasetList += key +', '
 		outputText += ' ' + datasetList.strip(', ')
 
+	elif action == 'attributes':
+		dataset = output['dataset']
+		attributesUrl = dataDict[dataset]['attributesUrl']
+		r = requests.get(attributesUrl).json()
+		attributes = r['layers'][0]['fields']
 
+		return render_template('attributes.html', outputText = outputText, attributes = attributes)
 	# This will return the response.html template with variables
 	# Action iand moreInfo are in a hidden <p> element to allow for JavaScript processing
 	return render_template('response.html', outputText = outputText, action = action, moreInfo = moreInfo)
