@@ -75,7 +75,7 @@
           type: "get",
           data: {jsdata: text},
           success: function(response) {
-            $("#chatWindow").append(response); 
+            $("#chatWindow").append("<div class'watson'>" + response + "</div>"); 
             manageActions()
           },
           error: function(xhr) {
