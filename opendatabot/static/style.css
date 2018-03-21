@@ -288,8 +288,8 @@ body {
 }
 
 #chatWindow{
-    max-height: 60vh;
-    max-width: 450px; 
+    max-height: 55vh;
+    max-width: 75vw; 
     margin: 50px auto;
     overflow:auto;
 }
@@ -323,10 +323,10 @@ body {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 2% auto; /* 15% from the top and centered */
+    margin: 5% auto; /* 15% from the top and centered */
     padding: 25px 25px 25px 25px;
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80vh;
     border: 1px solid #888;
      /* Could be more or less, depending on screen size */
     z-index: 2; /* Sit on top */
@@ -363,14 +363,49 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+
 #search_form_input {
   width:90%;
   margin:auto;
+  height:50px;
+  padding-right:120px;
 }
 
 #search_box.active {
-  width:90%;
+  width:70%;
   margin:auto;
   position: fixed;
   bottom: 80px;
+}
+
+#search_box {
+  width:70%;
+  margin:auto;
+  position: fixed;
+}
+
+div.userContainer{
+  width:100%;
+  height:10px;
+  position:static;
+  clear:both;
+}
+
+div.watsonContainer{
+  width:100%;
+  height:10px;
+  position:static;
+  clear:both;
+}
+
+input[type="submit"] {
+    margin-left: -115px;
+    background-color: #32a0c2;
+    border: none;
+    color: white;
+    padding: 10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

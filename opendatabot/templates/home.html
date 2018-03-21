@@ -41,7 +41,9 @@
         <div class="container">
           <article id="main-col">
                 <div id="question"><h1>What can I help you with?</h1></div>
-                <div id="search_box"><input type="text" id="search_form_input"></input></div>
+                <div id="search_box">
+                	<input type="text" id="search_form_input"></input>
+                	<input id="submitButton" onclick="enterPress()" type="submit" value="Submit"></div>
                 <div style="position: relative, left:80px; top:2px;" class="chatbot">
               </div>
           </article>
@@ -62,12 +64,19 @@
         }  
       }
 
+      function enterPress() {
+      	var ent = jQuery.Event("keypress")
+      	ent.which = 13
+      	ent.keyCode = 13
+      	$("#search_form_input").trigger(ent)
+      }
+
       $("#search_form_input").keypress(function(e){
         if(e.which == 13){
           var text = $(this).val();
           var d1=document.getElementById('chatWindow')
 
-          d1.insertAdjacentHTML('beforeend', "<div class='user'>" + $(this).val() + "</div>");
+          d1.insertAdjacentHTML('beforeend', "<div class='userContainer'><div class='user'>" + $(this).val() + "</div></div>");
           $("#search_box").addClass("active")
           d1.insertAdjacentHTML('beforeend', "<div id='loading' class='watson'><div class='loader'></div></div>");
           $("#chatWindow").animate({"scrollTop": $('#chatWindow')[0].scrollHeight}, "fast")
@@ -79,7 +88,7 @@
           data: {jsdata: text},
           success: function(response) {
             document.getElementById('loading').remove();
-            $("#chatWindow").append("<div class='watson'>" + response + "</div>");
+            $("#chatWindow").append("<div class='watsonContainer'><div class='watson'>" + response + "</div></div>");
             $("#chatWindow").animate({"scrollTop": $('#chatWindow')[0].scrollHeight}, "fast")
 			//$("#chatWindow").animate({scrollTop: $("#chatWindow").height()})
             manageActions()
