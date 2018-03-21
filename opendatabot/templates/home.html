@@ -71,6 +71,8 @@
 
           d1.insertAdjacentHTML('beforeend', "<div class='user'>" + $(this).val() + "</div>");
           d1.insertAdjacentHTML('beforeend', "<div id='loading' class='watson'><div class='loader'></div></div>");
+          $("#chatWindow").animate({"scrollTop": $('#chatWindow')[0].scrollHeight}, "fast")
+
           e.currentTarget.value = ""
           $.ajax({
           url: "/askWatson",
@@ -78,8 +80,11 @@
           data: {jsdata: text},
           success: function(response) {
             document.getElementById('loading').remove();
-            $("#chatWindow").append("<div class='watson'>" + response + "</div>"); 
+            $("#chatWindow").append("<div class='watson'>" + response + "</div>");
+            $("#chatWindow").animate({"scrollTop": $('#chatWindow')[0].scrollHeight}, "fast")
+			//$("#chatWindow").animate({scrollTop: $("#chatWindow").height()})
             manageActions()
+            
           },
           error: function(xhr) {
           //Do Something to handle error
