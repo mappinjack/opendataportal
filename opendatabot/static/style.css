@@ -116,11 +116,15 @@ background: linear-gradient(
 }
 
 footer{
-  padding: 20px;
-  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  padding: 5px;
+  margin-top: 5px;
   color: #ffffff;
   background-color: #32a0c2;
   text-align: center;
+
 }
 
 
@@ -213,35 +217,93 @@ body {
 .frame {
   border: 5px solid white;
 }
-.watson {
-	color:black;
-  background-color: LightSkyBlue;
-  border-color: #778899;
-  display:flex;
-  padding: 8px 8px 8px 8px;
-  border-radius: 10px;
-  text-align:right;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
 .user {
-	color:black;
-  	background-color: LightSlateGray;
-  	border-color: #778899;
-  	display:flex;
-  	padding: 8px 8px 8px 8px;
-  	border-radius: 10px;
-  	text-align:left;
-    justify-content: flex-end;
-    align-items: flex-end;
+  position:relative;
+  padding:10px 20px;
+  color:white; 
+  background:#0B93F6;
+  border-radius:25px;
+  float: right;
+    margin-bottom: 12px;
+    margin-top:12px;
+  &:before {
+    content:"";
+    position:absolute;
+    z-index:-1;
+    bottom:-2px;
+    right:-7px;
+    height:20px;
+    border-right:20px solid #0B93F6;
+    border-bottom-left-radius: 16px 14px;
+    -webkit-transform:translate(0, -2px);
+  }
+
+  &:after {
+    content:"";
+    position:absolute;
+    z-index:1;
+    bottom:-2px;
+    right:-56px;
+    width:26px;
+    height:20px;
+    background:white;
+    border-bottom-left-radius: 10px;
+    -webkit-transform:translate(-30px, -2px);
+  }
 }
-#chatWindow {
-  height:65vh;
-	overflow: auto;
+.watson {
+  position:relative;
+  padding:10px 20px;
+  background:#E5E5EA;
+  border-radius:25px;
+  color: black;
+  float: left;
+    margin-bottom:12px;
+    margin-top:12px;
+
+  &:before {
+    content:"";
+    position:absolute;
+    z-index:2;
+    bottom:-2px;
+    left:-7px;
+    height:20px;
+    border-left:20px solid #E5E5EA;
+    border-bottom-right-radius: 16px 14px;
+    -webkit-transform:translate(0, -2px);
+  }
+
+  &:after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    bottom:-2px;
+    left:4px;
+    width:26px;
+    height:20px;
+    background:white;
+    border-bottom-right-radius: 10px;
+    -webkit-transform:translate(-30px, -2px);
+  }
 }
 
-
-
+#chatWindow{
+    max-height: 60vh;
+    max-width: 450px; 
+    margin: 50px auto;
+    overflow:auto;
+}
+#chatWindow.div{
+    max-width: 255px;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    line-height: 24px;
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
 
 
 /* The Modal (background) */
@@ -251,8 +313,8 @@ body {
     z-index: 2; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 100vw; /* Full width */
+    height: 100vw; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -261,10 +323,10 @@ body {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto; /* 15% from the top and centered */
+    margin: 2% auto; /* 15% from the top and centered */
     padding: 25px 25px 25px 25px;
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
     border: 1px solid #888;
      /* Could be more or less, depending on screen size */
     z-index: 2; /* Sit on top */
@@ -299,4 +361,16 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#search_form_input {
+  width:90%;
+  margin:auto;
+}
+
+#search_box.active {
+  width:90%;
+  margin:auto;
+  position: fixed;
+  bottom: 80px;
 }

@@ -39,21 +39,41 @@
         url: '{{endpoint}}' // Need to make sure it as a string
       }).addTo(mymap2{{counter}});
 
+ /*
+    var featurelayer{{counter}} = L.esri.Cluster.featureLayer({
+        url: '{{endpoint}}' // Need to make sure it as a string
+      }).addTo(mymap);
+
+    var featurelayer2{{counter}} = L.esri.Cluster.featureLayer({
+        url: '{{endpoint}}' // Need to make sure it as a string
+      }).addTo(mymap); */
     // !!Zoom to bounds once loaded!!
     featurelayer{{counter}}.query().bounds(function (error, latlngbounds) {
       mymap{{counter}}.fitBounds(latlngbounds);
     });
 
-
     //featurelayer.addTo(markers);
-
     var popup{{counter}} = featurelayer{{counter}}.bindPopup(function(layer){
-    	field1 = {{popupFields|safe}}[0]
-    	    	return L.Util.template('<p>{' + field1 + '}</p>' ,layer.feature.properties)});
+      fields = {{popupFields|safe}}
+      outHtml = '<div class=popup>'
+      var arrayLength = fields.length
+      for (var i = 0; i <arrayLength; i++) {
+        outHtml += '<p><b>' + fields[i] +'</b> {'+ fields[i] + '}</p>' 
+      }
+      outHtml += '</div>'
+            return L.Util.template(outHtml, layer.feature.properties)});
 
     var popup2{{counter}} = featurelayer2{{counter}}.bindPopup(function(layer){
-      field1 = {{popupFields|safe}}[0]
-            return L.Util.template('<p>{' + field1 + '}</p>' ,layer.feature.properties)});
+      fields = {{popupFields|safe}}
+      outHtml = '<div class=popup>'
+      var arrayLength = fields.length
+      for (var i = 0; i <arrayLength; i++) {
+        outHtml += '<p><b>' + fields[i] +'</b> {'+ fields[i] + '}</p>' 
+      }
+      outHtml += '</div>'
+            return L.Util.template(outHtml, layer.feature.properties)});
+
+
     popup{{counter}}.addTo(mymap{{counter}});
     popup2{{counter}}.addTo(mymap2{{counter}});
 	

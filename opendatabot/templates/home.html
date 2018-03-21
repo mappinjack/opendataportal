@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="description" content="Affordable Web Design For Small And Medium-sized Companies">
       <meta name="author" content="Sebastian Eschweiler">
+      
       <title>Open Data Portal</title>
       <!-- Import libraries -->      
       <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous"></script>
@@ -39,14 +40,11 @@
       <section id="chatWindow" class="main">
         <div class="container">
           <article id="main-col">
-            <h1 class="page-title">Chat Bot Service</h1>
                 <div id="question"><h1>What can I help you with?</h1></div>
                 <div id="search_box"><input type="text" id="search_form_input"></input></div>
                 <div style="position: relative, left:80px; top:2px;" class="chatbot">
               </div>
           </article>
-          <aside id="sidebar">
-          </aside>
         </div>
       </section>
        <footer>
@@ -70,6 +68,7 @@
           var d1=document.getElementById('chatWindow')
 
           d1.insertAdjacentHTML('beforeend', "<div class='user'>" + $(this).val() + "</div>");
+          $("#search_box").addClass("active")
           d1.insertAdjacentHTML('beforeend', "<div id='loading' class='watson'><div class='loader'></div></div>");
           $("#chatWindow").animate({"scrollTop": $('#chatWindow')[0].scrollHeight}, "fast")
 
