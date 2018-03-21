@@ -12,6 +12,7 @@ import requests
 app = Flask(__name__)
 
 context = {}
+counter = 0
 
 @app.route('/')
 def home():
@@ -20,6 +21,7 @@ def home():
 @app.route('/askWatson', methods=['POST', 'GET'])
 def askWatson():
 	global context
+	global counter
 	user_input = request.args.get('jsdata')
 
 	conversation = ConversationV1(
@@ -45,6 +47,7 @@ def askWatson():
 	intents = response['intents'] if response['intents'] else None
 	# List of Watson identified entities
 	entities = response['entities'] if response['entities'] else None
+	# Counter for uIds
 
 	# Print the output from dialog, if any.
 	moreInfo = None
@@ -69,10 +72,11 @@ def askWatson():
 		return render_template('metadata.html', outputText = outputText, description = description, wkid = wkid)
 
 	elif action == 'showOnMap':
+		counter += 1
 		dataset = output['dataset']
 		endpoint = dataDict[dataset]['endpoint']
 		popupFields = json.dumps(dataDict[dataset]['popupFields'])
-		return render_template('showOnMap.html', outputText = outputText, endpoint = endpoint, popupFields = popupFields)
+		return render_template('showOnMap.html', outputText = outputText, endpoint = endpoint, popupFields = popupFields, counter = str(counter))
 
 	# Return datasets
 	elif action == 'listDatasets':

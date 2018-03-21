@@ -213,3 +213,90 @@ body {
 .frame {
   border: 5px solid white;
 }
+.watson {
+	color:black;
+  background-color: LightSkyBlue;
+  border-color: #778899;
+  display:flex;
+  padding: 8px 8px 8px 8px;
+  border-radius: 10px;
+  text-align:right;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.user {
+	color:black;
+  	background-color: LightSlateGray;
+  	border-color: #778899;
+  	display:flex;
+  	padding: 8px 8px 8px 8px;
+  	border-radius: 10px;
+  	text-align:left;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+#chatWindow {
+  height:65vh;
+	overflow: auto;
+}
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 25px 25px 25px 25px;
+    width: 80%;
+    height: 80%;
+    border: 1px solid #888;
+     /* Could be more or less, depending on screen size */
+    z-index: 2; /* Sit on top */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin-right:25px;
+}
+/* Safari */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

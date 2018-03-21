@@ -1,45 +1,95 @@
-  <p>{{outputText}}</p>
-	<div id="mapid"  style="align:right;height:500px;width:600px;"></div>
+<div id="mapResponse{{counter}}" class="watson">
+  <div id="mapShown{{counter}}">
+    <p>{{outputText}}</p>
+	  <div id="mapid{{counter}}"  style="align:right;height:200px;width:300px;z-index:1;"></div></div>
+    <div id="mapModal{{counter}}" class="modal">
+    <div class="modal-content">
+    <span id="close{{counter}}" class="close">&times;</span>
+    <div id="mapid2{{counter}}"  style="position:relative;height:95%;width:100%;z-index:1;"></div>
+    </div>
+  </div>
+</div>
 
 	<script type="text/javascript">
 	// Initialize map
-	var mymap = L.map('mapid').setView([43.4586, -80.5070], 13);
-
+	var mymap{{counter}} = L.map('mapid{{counter}}',{zoomControl:false}).setView([43.4586, -80.5070], 13);
+  var mymap2{{counter}} = L.map('mapid2{{counter}}').setView([43.4586, -80.5070], 13);
 	// Set MapBox tile layer
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw', {
     	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     	maxZoom: 18,
     	id: 'mapbox.streets' ,
    	accessToken: 'pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw'
-	}).addTo(mymap);
+	}).addTo(mymap{{counter}});
 
-	// Right now you can enter 'parks' or 'buildings'
-	//var dataSet = prompt("What are you looking for?", "")
-	// var markers = L.markerClusterGroup();
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox.streets' ,
+    accessToken: 'pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw'
+  }).addTo(mymap2{{counter}});
 
 	// Call endpoint attribute from global dataset variable
 
-    var featurelayer = L.esri.featureLayer({
+    var featurelayer{{counter}} = L.esri.featureLayer({
+       url: '{{endpoint}}' // Need to make sure it as a string
+     }).addTo(mymap{{counter}});
+
+    var featurelayer2{{counter}} = L.esri.featureLayer({
         url: '{{endpoint}}' // Need to make sure it as a string
-      }).addTo(mymap);
+      }).addTo(mymap2{{counter}});
 
     // !!Zoom to bounds once loaded!!
-  featurelayer.query().bounds(function (error, latlngbounds) {
-    mymap.fitBounds(latlngbounds);
-  });
+    featurelayer{{counter}}.query().bounds(function (error, latlngbounds) {
+      mymap{{counter}}.fitBounds(latlngbounds);
+    });
 
 
     //featurelayer.addTo(markers);
 
-    var popup = featurelayer.bindPopup(function(layer){
+    var popup{{counter}} = featurelayer{{counter}}.bindPopup(function(layer){
     	field1 = {{popupFields|safe}}[0]
     	    	return L.Util.template('<p>{' + field1 + '}</p>' ,layer.feature.properties)});
 
-    popup.addTo(mymap);
+    var popup2{{counter}} = featurelayer2{{counter}}.bindPopup(function(layer){
+      field1 = {{popupFields|safe}}[0]
+            return L.Util.template('<p>{' + field1 + '}</p>' ,layer.feature.properties)});
+    popup{{counter}}.addTo(mymap{{counter}});
+    popup2{{counter}}.addTo(mymap2{{counter}});
 	
  //    mymap.addLayer(markers);
 	// mymap.fitBounds(markers.getBounds());
 
 
+var modal{{counter}} = document.getElementById('mapModal{{counter}}');
 
+// Get the button that opens the modal
+var btn{{counter}} = document.getElementById("mapShown{{counter}}");
+
+// Get the <span> element that closes the modal
+var span{{counter}} = document.getElementById("close{{counter}}");
+
+// When the user clicks on the button, open the modal 
+btn{{counter}}.onclick = function() {
+    modal{{counter}}.style.display = "block";
+    setTimeout(function() {
+    mymap2{{counter}}.invalidateSize();
+    featurelayer2{{counter}}.query().bounds(function (error, latlngbounds) {
+    mymap2{{counter}}.fitBounds(latlngbounds);
+  });
+    }, 100);
+
+}
+
+// When the user clicks on <span> (x), close the modal
+span{{counter}}.onclick = function() {
+    modal{{counter}}.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal{{counter}}) {
+        modal{{counter}}.style.display = "none";
+    }
+}
 	</script>
