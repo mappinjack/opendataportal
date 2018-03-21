@@ -68,13 +68,16 @@
         if(e.which == 13){
           var text = $(this).val();
           var d1=document.getElementById('chatWindow')
-          d1.insertAdjacentHTML('beforeend', "<div class='user'>" + $(this).val() + "</div>");
 
-        $.ajax({
+          d1.insertAdjacentHTML('beforeend', "<div class='user'>" + $(this).val() + "</div>");
+          d1.insertAdjacentHTML('beforeend', "<div id='loading' class='watson'><div class='loader'></div></div>");
+          e.currentTarget.value = ""
+          $.ajax({
           url: "/askWatson",
           type: "get",
           data: {jsdata: text},
           success: function(response) {
+            document.getElementById('loading').remove();
             $("#chatWindow").append("<div class='watson'>" + response + "</div>"); 
             manageActions()
           },
