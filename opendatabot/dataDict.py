@@ -51,15 +51,16 @@ dataDict = {
 		"metaUrl" : "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/WaterFeatures_Creeks/FeatureServer?f=pjson",
 		"attributesUrl" : "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/WaterFeatures_Creeks/FeatureServer/layers?f=pjson",
 	    "popupFields":["NAME"]},
-	"pWorship":{
+	"places of worship":{
 	    "endpoint": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/PlacesOfWorship/FeatureServer/0/",
 	    "downloadUrls": {"csv": "https://opendata.arcgis.com/datasets/5d90eeb4db7d49ab99f0565ff612eb1c_0.csv",
 	                     "kml": "https://opendata.arcgis.com/datasets/5d90eeb4db7d49ab99f0565ff612eb1c_0.kml",
 	                     "shp": "https://opendata.arcgis.com/datasets/5d90eeb4db7d49ab99f0565ff612eb1c_0.zip",
 	                     "gdb": "https://www.arcgis.com/sharing/rest/content/items/90e0d0e513e64056a988cbb67054196b/data"},
 	    "metaUrl": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/PlacesOfWorship/FeatureServer?f=pjson",
-	    "attributeUrl": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/PlacesOfWorship/FeatureServer/layers?f=pjon",
+	    "attributesUrl": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/PlacesOfWorship/FeatureServer/layers?f=pjson",
 	    "popupFields": ["NAME","ADDRESS"]},
+
 	"schools":{
 	    "endpoint": "https://services.arcgis.com/ZpeBVw5o1kjit7LT/arcgis/rest/services/Schools/FeatureServer/0/",
 	    "downloadUrls": {"csv": "https://opendata.arcgis.com/datasets/3901b3ef7f7343be8ebfe793efae8f21_0.csv",

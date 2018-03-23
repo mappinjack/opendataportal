@@ -29,8 +29,10 @@
     accessToken: 'pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw'
   }).addTo(mymap2{{counter}});
 
-	// Call endpoint attribute from global dataset variable
+	// Create feature layers with uniqueIds and populate endpoints with Jinja2
 
+  // Non cluster layers:
+  /*
     var featurelayer{{counter}} = L.esri.featureLayer({
        url: '{{endpoint}}' // Need to make sure it as a string
      }).addTo(mymap{{counter}});
@@ -39,77 +41,68 @@
         url: '{{endpoint}}' // Need to make sure it as a string
       }).addTo(mymap2{{counter}});
 
- /*
+  */
+  // Cluster layers:
+  
     var featurelayer{{counter}} = L.esri.Cluster.featureLayer({
         url: '{{endpoint}}' // Need to make sure it as a string
-      }).addTo(mymap);
+      }).addTo(mymap{{counter}});
 
     var featurelayer2{{counter}} = L.esri.Cluster.featureLayer({
         url: '{{endpoint}}' // Need to make sure it as a string
-      }).addTo(mymap); */
+      }).addTo(mymap{{counter}}); 
     // !!Zoom to bounds once loaded!!
     featurelayer{{counter}}.query().bounds(function (error, latlngbounds) {
       mymap{{counter}}.fitBounds(latlngbounds);
     });
 
-    //featurelayer.addTo(markers);
-    var popup{{counter}} = featurelayer{{counter}}.bindPopup(function(layer){
-      fields = {{popupFields|safe}}
-      outHtml = '<div class=popup>'
-      var arrayLength = fields.length
-      for (var i = 0; i <arrayLength; i++) {
-        outHtml += '<p><b>' + fields[i] +'</b> {'+ fields[i] + '}</p>' 
-      }
-      outHtml += '</div>'
-            return L.Util.template(outHtml, layer.feature.properties)});
 
+    // Create popups for both modal map;
     var popup2{{counter}} = featurelayer2{{counter}}.bindPopup(function(layer){
       fields = {{popupFields|safe}}
       outHtml = '<div class=popup>'
       var arrayLength = fields.length
       for (var i = 0; i <arrayLength; i++) {
-        outHtml += '<p><b>' + fields[i] +'</b> {'+ fields[i] + '}</p>' 
+        outHtml += '<p><b>' + fields[i] +':</b> {'+ fields[i] + '}</p>' 
       }
       outHtml += '</div>'
             return L.Util.template(outHtml, layer.feature.properties)});
 
-
-    popup{{counter}}.addTo(mymap{{counter}});
     popup2{{counter}}.addTo(mymap2{{counter}});
 	
  //    mymap.addLayer(markers);
 	// mymap.fitBounds(markers.getBounds());
 
+    // Map modal on click
+    var modal{{counter}} = document.getElementById('mapModal{{counter}}');
 
-var modal{{counter}} = document.getElementById('mapModal{{counter}}');
+    // Get the button that opens the modal
+    var btn{{counter}} = document.getElementById("mapShown{{counter}}");
 
-// Get the button that opens the modal
-var btn{{counter}} = document.getElementById("mapShown{{counter}}");
+    // Get the <span> element that closes the modal
+    var span{{counter}} = document.getElementById("close{{counter}}");
 
-// Get the <span> element that closes the modal
-var span{{counter}} = document.getElementById("close{{counter}}");
+    // When the user clicks on the button, open the modal 
+    btn{{counter}}.onclick = function() {
+        modal{{counter}}.style.display = "block";
+        setTimeout(function() {
+        mymap2{{counter}}.invalidateSize();
+        featurelayer2{{counter}}.query().bounds(function (error, latlngbounds) {
+        mymap2{{counter}}.fitBounds(latlngbounds);
+      });
+        }, 10);
 
-// When the user clicks on the button, open the modal 
-btn{{counter}}.onclick = function() {
-    modal{{counter}}.style.display = "block";
-    setTimeout(function() {
-    mymap2{{counter}}.invalidateSize();
-    featurelayer2{{counter}}.query().bounds(function (error, latlngbounds) {
-    mymap2{{counter}}.fitBounds(latlngbounds);
-  });
-    }, 10);
+    }
 
-}
-
-// When the user clicks on <span> (x), close the modal
-span{{counter}}.onclick = function() {
-    modal{{counter}}.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal{{counter}}) {
+    // When the user clicks on <span> (x), close the modal
+    span{{counter}}.onclick = function() {
         modal{{counter}}.style.display = "none";
     }
-}
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal{{counter}}) {
+            modal{{counter}}.style.display = "none";
+        }
+    }
 	</script>

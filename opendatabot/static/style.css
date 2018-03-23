@@ -288,7 +288,7 @@ body {
 }
 
 #chatWindow{
-    max-height: 55vh;
+    max-height: calc(80vh - 110px);
     max-width: 75vw; 
     margin: 50px auto;
     overflow:auto;
@@ -371,18 +371,13 @@ body {
   padding-right:120px;
 }
 
-#search_box.active {
-  width:70%;
-  margin:auto;
-  position: fixed;
-  bottom: 80px;
-}
 
 #search_box {
-  width:70%;
+  width:90%;
   margin:auto;
-  position: fixed;
+
 }
+
 
 div.userContainer{
   width:100%;
