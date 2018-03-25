@@ -14,9 +14,22 @@ app = Flask(__name__)
 context = {}
 counter = 0
 
-@app.route('/')
-def home():
+@app.route('/chat')
+def chat():
     return render_template('home.html')
+
+@app.route('/help')
+def help():
+	return render_template('help.html')
+
+@app.route('/about')
+def about():
+	return render_template('about.html')
+
+## Update to home page
+@app.route('/')
+def index():
+	return render_template('home.html')
 
 @app.route('/askWatson', methods=['POST', 'GET'])
 def askWatson():
