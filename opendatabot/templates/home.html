@@ -102,7 +102,9 @@
             finally {
               $("#chatWindow").append(searchBox);
               $("#chatWindow").animate({"scrollTop": $('#chatWindow')[0].scrollHeight}, "fast")
+              document.getElementById("search_form_input").focus()
             }
+
 			//$("#chatWindow").animate({scrollTop: $("#chatWindow").height()})
             
             
