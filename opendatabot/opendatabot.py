@@ -29,7 +29,7 @@ def about():
 ## Update to home page
 @app.route('/')
 def index():
-	return render_template('home.html')
+	return render_template('index.html')
 
 @app.route('/askWatson', methods=['POST', 'GET'])
 def askWatson():
