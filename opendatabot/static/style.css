@@ -220,6 +220,11 @@ ul#services h3{
     color: black;
 }
 
+li, ul{
+    color: white;
+}
+
+
 body {
   background-color: #333;
 }
