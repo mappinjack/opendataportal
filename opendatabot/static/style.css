@@ -15,12 +15,12 @@ body{
 .homeHeader{
     width: 80%;
     margin:auto;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.6);
     padding: 50px;
     color: white;
 }
 .homeP{
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.6);
     color: white;
 }
 ul{
@@ -67,6 +67,8 @@ header a:hover{
   font-weight: bold;
 }
 
+
+
 /* Showcase */
 #showcase {
   min-height: 500px;
@@ -89,24 +91,7 @@ background: linear-gradient(
                      rgba(20,20,20, .5), 
                      rgba(20,20,20, .5)),
                      url('../img/headerbg.jpg');*/
-/* Newsletter */
-#newsletter{
-  padding: 15px;
-  color: #ffffff;
-  background: #353637;
-}
-#newsletter h1{
-  float: left;
-}
-#newsletter form{
-  float: right;
-  margin-top: 15px;
-}
-#newsletter input[type="email"]{
-  padding: 4px;
-  height: 25px;
-  width: 250px;
-}
+
 .button_1{
   height: 38px;
   background: #cccccc;
@@ -229,6 +214,10 @@ ul#services h3{
 
 #sidebar h3, p{
     color: white;
+}
+
+.watson p, li, ul{
+    color: black;
 }
 
 body {
@@ -395,6 +384,7 @@ body {
 #search_box {
   width:90%;
   margin:auto;
+  clear: both;
 
 }
 
@@ -423,4 +413,18 @@ input[type="submit"] {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+p a:link {
+    color: #32a0c2;
+}
+
+/* visited link */
+p a:visited {
+    color: #32a0c2;
+}
+
+/* mouse over link */
+p a:hover {
+    color: #32a0c2;
 }
