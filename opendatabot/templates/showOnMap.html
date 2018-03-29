@@ -15,18 +15,18 @@
 	var mymap{{counter}} = L.map('mapid{{counter}}',{zoomControl:false}).setView([43.4586, -80.5070], 13);
   var mymap2{{counter}} = L.map('mapid2{{counter}}').setView([43.4586, -80.5070], 13);
 	// Set MapBox tile layer
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw', {
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={{mapBoxKey}}', {
     	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     	maxZoom: 18,
     	id: 'mapbox.streets' ,
-   	accessToken: 'pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw'
+   	accessToken: '{{mapBoxKey}}'
 	}).addTo(mymap{{counter}});
 
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw', {
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={{mapBoxKey}}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
       id: 'mapbox.streets' ,
-    accessToken: 'pk.eyJ1Ijoicmlrb3c5NSIsImEiOiJjajJtYnZhbmswMHV1MzN0ajM3NHNzOHh5In0.q6-T946dwyUkr1ml9-qRbw'
+    accessToken: '{{mapBoxKey}}'
   }).addTo(mymap2{{counter}});
 
 	// Create feature layers with uniqueIds and populate endpoints with Jinja2

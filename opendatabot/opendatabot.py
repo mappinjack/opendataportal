@@ -89,7 +89,7 @@ def askWatson():
 		dataset = output['dataset']
 		endpoint = dataDict[dataset]['endpoint']
 		popupFields = json.dumps(dataDict[dataset]['popupFields'])
-		return render_template('showOnMap.html', outputText = outputText, endpoint = endpoint, popupFields = popupFields, counter = str(counter))
+		return render_template('showOnMap.html', outputText = outputText, endpoint = endpoint, popupFields = popupFields, counter = str(counter), mapBoxKey = apiKeys["mapBoxKey"])
 
 	# Return datasets
 	elif action == 'listDatasets':

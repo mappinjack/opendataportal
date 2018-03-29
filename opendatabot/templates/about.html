@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Open Data Portal">
-    <title>Lou Chat Bot</title>
+    <title>WaterLou Chatbot</title>
     <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
     <header>
       <div class="container">
         <div id="branding">
-          <h1><i class="fa fa-rocket"></i> <span class="highlight">Open Data</span> Portal</h1>
+          <h1><span class="highlight">WaterLou Open Data</span> Portal</h1>
         </div>
         <nav>
           <ul>
@@ -31,18 +31,25 @@
             About Lou
           </h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quaerat modi fuga doloremque id, dolores tempora, rerum ducimus ipsum dolor explicabo blanditiis! Esse tempore, iure quibusdam aspernatur provident ducimus nesciunt?
+            The Water<b>Lou</b> Open Data Chatbot, or Lou for short, was created as a final project for GEOG 483. It is designed to allow users to interact with the City of Waterloo’s Open Data Portal in a friendlier way to discover new datasets, visualize them on a map, learn more about their metadata, and the fields they contain. Four key components make up the project:
           </p>
           <p class="dark">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, at, a. Tempora rerum excepturi quam accusantium labore? Hic alias ducimus, at reiciendis voluptatum, veritatis ipsum animi dolore dolorem dignissimos dolores.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil porro ipsa, assumenda alias harum debitis ab, a, eligendi, fugiat voluptas consectetur. Placeat cumque autem nemo accusamus odio labore dolore, in.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi quam odio porro quo beatae ipsam laboriosam ea optio, suscipit ut dolorum! Nisi eius fugiat fugit illo, obcaecati quo. Dicta, eaque.
+          <b>Chat Interface:</b> The chatbot interface is built with HTML/JavaScript and allows users to enter their questions to the bot and see responses. Leaflet powers the map functions and is extended via the Esri Leaflet library. Supporting CSS helps to style things appropriately.</p>
+
+
+          <p><b>Watson Assistant API:</b> IBM’s Watson Assistant API allows us to perform natural language processing on input text to determine user intents and entities, as well develop conversational dialogue. We developed a custom build of this API to fit it to this project and allow us to trigger further actions when the server receives a response from Watson.</p>
+
+          
+          <p><b>Waterloo Open Data Portal/ArcGIS REST:</b> The Waterloo Open Data Portal is accessible via ArcGIS REST endpoints, which allowed us to build a dynamic and scalable application that contains minimal hardcoding and no local data. Spatial features and accompanying metadata are pulled live from the data portal through the REST interface. </p>
+
+          
+          <p><b>Flask Server:</b> Flask is a Python library that runs a custom server that handles processing in Python. Flask is the central point of this project and communicates to and from each of the other components quickly and effectively. The server handles requests to Watson and ArcGIS services and creates HTML response templates based on the returned data.
           </p>
         </article>
         <aside id="sidebar">
           <div class="dark">
-            <h3><i class="fa fa-users"></i> The Team</h3>
-            <p> Jack, Malcolm, and Paul are geography students at the University of Waterloo. This website application is the final project for GEOG483 Geoweb course.</p>
+            <h3> The Team</h3>
+            <p> Jack, Malcolm, and Paul are geography students at the University of Waterloo. This website application is the final project for GEOG 483: Geoweb and Location-Based Services.</p>
           </div>
         </aside>
       </div>
